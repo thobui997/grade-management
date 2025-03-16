@@ -1,4 +1,5 @@
-import { useLocalStorage, useNotification } from '@app/hooks';
+import { useNotification } from '@app/contexts/NotificationProvider';
+import { useLocalStorage } from '@app/hooks';
 import AuthServices from '@app/services/auth/login.service';
 import { AuthInfo } from '@app/services/auth/login.type';
 import React, { useContext, useState } from 'react';
@@ -18,7 +19,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const [initialAuthInfo, setStoredValue] = useLocalStorage<AuthInfo | null>(STORAGE_KEY, null);
   const [authInfo, setAuthInfo] = useState<AuthInfo | null>(initialAuthInfo);
-  const { showNotification, contextHolder } = useNotification();
+  const notification = useNotification();
 
   const loginAction = async (payload: { email: string; password: string }) => {
     try {
@@ -31,7 +32,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         return;
       }
     } catch (err: any) {
-      showNotification('error', 'Đăng nhập thất bại', 'Email hoặc mật khẩu không đúng');
+      notification.showNotification('error', 'Đăng nhập thất bại', 'Email hoặc mật khẩu không đúng');
     }
   };
 
@@ -41,12 +42,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     navigate('/login');
   };
 
-  return (
-    <AuthContext.Provider value={{ authInfo, loginAction, logOut }}>
-      {contextHolder}
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ authInfo, loginAction, logOut }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

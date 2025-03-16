@@ -1,8 +1,8 @@
 import { DeleteOutlined, EditOutlined, FilterOutlined, PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import { PageTitle } from '@app/components';
+import { useNotification } from '@app/contexts/NotificationProvider';
 import { BaseModalProps } from '@app/core/models/base-modal.type';
 import { BaseResponse } from '@app/core/models/base.type';
-import { useNotification } from '@app/hooks';
 import ContentLayout from '@app/layouts/ContentLayout';
 import StudentModal from '@app/pages/students-management/_components/StudentModal';
 import StudentServices from '@app/services/student/student.service';
@@ -14,7 +14,7 @@ import { useMemo, useState } from 'react';
 
 const StudentsManagement = () => {
   const queryClient = useQueryClient();
-  const { showNotification, contextHolder } = useNotification();
+  const { showNotification } = useNotification();
 
   // states
   const [modalProps, setModalProps] = useState<BaseModalProps<Student>>({
@@ -93,7 +93,6 @@ const StudentsManagement = () => {
 
   return (
     <>
-      {contextHolder}
       <Flex justify='space-between' align='center'>
         <PageTitle title='Quản lý sinh viên' />
         <Button
@@ -108,12 +107,7 @@ const StudentsManagement = () => {
 
       <ContentLayout>
         <Space style={{ marginBottom: 16 }}>
-          <Input
-            addonBefore={<SearchOutlined />}
-            placeholder='Tìm kiếm'
-            style={{ width: 300 }}
-            size='large'
-          />
+          <Input addonBefore={<SearchOutlined />} placeholder='Tìm kiếm' style={{ width: 300 }} size='large' />
 
           <Button icon={<FilterOutlined />} size='large'>
             Lọc
@@ -136,7 +130,6 @@ const StudentsManagement = () => {
           data={modalProps.data}
           open={modalProps.open}
           type={modalProps.type}
-          showNotification={showNotification}
           handleCancel={() => setModalProps({ open: false })}
         />
       )}

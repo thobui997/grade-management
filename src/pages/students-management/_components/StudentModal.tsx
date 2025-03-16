@@ -1,3 +1,4 @@
+import { useNotification } from '@app/contexts/NotificationProvider';
 import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from '@app/core/conts/pattern.const';
 import { BaseModalProps } from '@app/core/models/base-modal.type';
 import { BaseResponse } from '@app/core/models/base.type';
@@ -8,9 +9,10 @@ import { Flex, Form, Input, Modal } from 'antd';
 import { AxiosError } from 'axios';
 import { useEffect } from 'react';
 
-const StudentModal = ({ open, data, type, handleCancel, showNotification }: BaseModalProps<Student>) => {
+const StudentModal = ({ open, data, type, handleCancel }: BaseModalProps<Student>) => {
   const queryClient = useQueryClient();
   const [form] = Form.useForm();
+  const { showNotification } = useNotification();
 
   const mutation = useMutation({
     mutationFn: (payload: StudentCreatedRequest) => {

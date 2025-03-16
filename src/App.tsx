@@ -7,23 +7,26 @@ import LecturerManagement from './pages/lecturer-management/LecturerManagement';
 import SemesterManagement from './pages/semester-management/SemesterManagement';
 import StudentsManagement from './pages/students-management/StudentsManagement';
 import UsersManagement from './pages/users-management/UsersManagement';
+import NotificationProvider from '@app/contexts/NotificationProvider';
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path='/dang-nhap' element={<Login />} />
-        <Route element={<PrivateRoute />}>
-          <Route element={<AppLayout />}>
-            <Route index element={<Navigate to='/quan-ly-hoc-ky' />} />
-            <Route path='quan-ly-hoc-ky' element={<SemesterManagement />} />
-            <Route path='quan-ly-giang-vien' element={<LecturerManagement />} />
-            <Route path='quan-ly-sinh-vien' element={<StudentsManagement />} />
-            <Route path='quan-ly-nguoi-dung' element={<UsersManagement />} />
+    <NotificationProvider>
+      <AuthProvider>
+        <Routes>
+          <Route path='/dang-nhap' element={<Login />} />
+          <Route element={<PrivateRoute />}>
+            <Route element={<AppLayout />}>
+              <Route index element={<Navigate to='/quan-ly-hoc-ky' />} />
+              <Route path='quan-ly-hoc-ky' element={<SemesterManagement />} />
+              <Route path='quan-ly-giang-vien' element={<LecturerManagement />} />
+              <Route path='quan-ly-sinh-vien' element={<StudentsManagement />} />
+              <Route path='quan-ly-nguoi-dung' element={<UsersManagement />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </AuthProvider>
+        </Routes>
+      </AuthProvider>
+    </NotificationProvider>
   );
 };
 

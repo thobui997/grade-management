@@ -42,7 +42,7 @@ const Login = () => {
 
           <Form.Item label={null}>
             <Button type='primary' size='large' htmlType='button' style={{ width: '100%' }} onClick={handleLogin}>
-              Submit
+              Đăng Nhập
             </Button>
           </Form.Item>
         </Form>
