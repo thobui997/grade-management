@@ -94,7 +94,7 @@ const StudentsManagement = () => {
   return (
     <>
       <Flex justify='space-between' align='center'>
-        <PageTitle title='Quản lý sinh viên' />
+        <PageTitle title='Quản Lý Sinh Viên' />
         <Button
           type='primary'
           icon={<PlusOutlined />}
