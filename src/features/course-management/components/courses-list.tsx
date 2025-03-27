@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useCourses } from '../api/get-courses';
 import DeleteCourse from './delete-course';
 import UpdateCourse from './update-course';
+import dateUtils from '@app/lib/date-utils';
 
 const CourseList = () => {
   const coursesQuery = useCourses();
