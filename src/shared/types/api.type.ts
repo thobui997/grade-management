@@ -101,5 +101,5 @@ export interface Score {
   practiceScore: number;
   projectScore: number;
   finalScore: number;
-  aclass: ClassInfo;
+  aclass: Aclass;
 }

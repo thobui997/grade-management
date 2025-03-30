@@ -1,5 +1,6 @@
+import UpdateScore from '@app/features/scores/components/update-score';
 import { Score } from '@app/shared/types/api.type';
-import { Table, TableColumnsType } from 'antd';
+import { Space, Table, TableColumnsType } from 'antd';
 import { useMemo } from 'react';
 
 type ScoresListProps = {
@@ -64,6 +65,16 @@ const ScoresList = ({ scores }: ScoresListProps) => {
             width: 80
           }
         ]
+      },
+      {
+        key: 'action',
+        title: 'Hành động',
+        width: 80,
+        render: (_, score) => (
+          <Space>
+            <UpdateScore score={score} />
+          </Space>
+        )
       }
     ];
   }, []);
