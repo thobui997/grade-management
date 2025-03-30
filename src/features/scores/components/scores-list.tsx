@@ -24,6 +24,13 @@ const ScoresList = ({ scores }: ScoresListProps) => {
         render: (student) => `${student.lastName} ${student.firstName}`
       },
       {
+        key: 'aclass',
+        title: 'Học phần',
+        dataIndex: 'aclass',
+        width: 120,
+        render: (aclass) => aclass.className
+      },
+      {
         title: 'Điểm thành phần',
         children: [
           {
