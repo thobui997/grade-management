@@ -1,5 +1,5 @@
 import { ClassCreatedRequest } from '@app/shared/types/api.type';
-import { getClassesQueryOptions } from '@app/features/class/api/get-classes';
+import { getClassesQueryOptions } from '@app/shared/api/get-classes';
 import { httpClient } from '@app/lib/http-client';
 import { MutationConfig } from '@app/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';

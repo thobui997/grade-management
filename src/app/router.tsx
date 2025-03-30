@@ -11,6 +11,7 @@ const StudentsRoute = lazy(() => import('./pages/app/students'));
 const SemestersRoute = lazy(() => import('./pages/app/semesters'));
 const UsersRoute = lazy(() => import('./pages/app/users'));
 const ClassesRoute = lazy(() => import('./pages/app/classes'));
+const ScoresRoute = lazy(() => import('./pages/app/scores'));
 
 const ProtectedRoute = () => {
   const user = useAuth();
@@ -33,6 +34,7 @@ export const AppRouter = () => {
           <Route path={paths.app.courses.path} element={<CoursesRoute />} />
           <Route path={paths.app.users.path} element={<UsersRoute />} />
           <Route path={paths.app.classes.path} element={<ClassesRoute />} />
+          <Route path={paths.app.scores.path} element={<ScoresRoute />} />
         </Route>
       </Route>
     </Routes>

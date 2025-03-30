@@ -1,17 +1,17 @@
-import { getClassesQueryOptions } from '@app/shared/api/get-classes';
 import { httpClient } from '@app/lib/http-client';
 import { MutationConfig } from '@app/lib/react-query';
+import { ScoreCreatedRequest } from '@app/shared/types/api.type';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const deleteClass = (id: number) => {
-  return httpClient.delete(`classes/${id}`);
+export const createScore = (payload: ScoreCreatedRequest) => {
+  return httpClient.post('class-scores', payload);
 };
 
-type UseDeleteClassOptions = {
-  mutationConfig?: MutationConfig<typeof deleteClass>;
+type UseCreateScoreOptions = {
+  mutationConfig?: MutationConfig<typeof createScore>;
 };
 
-export const useDeleteClass = ({ mutationConfig }: UseDeleteClassOptions = {}) => {
+export const useCreateScore = ({ mutationConfig }: UseCreateScoreOptions = {}) => {
   const queryClient = useQueryClient();
 
   const { onSuccess, ...restConfig } = mutationConfig || {};
@@ -19,11 +19,11 @@ export const useDeleteClass = ({ mutationConfig }: UseDeleteClassOptions = {}) =
   return useMutation({
     onSuccess: (...args) => {
       queryClient.invalidateQueries({
-        queryKey: getClassesQueryOptions().queryKey
+        queryKey: ['scores']
       });
       onSuccess?.(...args);
     },
     ...restConfig,
-    mutationFn: deleteClass
+    mutationFn: createScore
   });
 };

@@ -2,7 +2,7 @@ import { BaseResponse, Student } from '@app/shared/types/api.type';
 import { httpClient } from '@app/lib/http-client';
 import { MutationConfig } from '@app/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getStudentsQueryOptions } from './get-students';
+import { getStudentsQueryOptions } from '../../../shared/api/get-students';
 
 export type StudentUpdatedRequest = Omit<Student, 'id'>;
 

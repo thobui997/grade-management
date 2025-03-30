@@ -1,7 +1,7 @@
 import { Student } from '@app/shared/types/api.type';
 import { Space, Table, TableColumnsType } from 'antd';
 import { useMemo } from 'react';
-import { useStudents } from '../api/get-students';
+import { useStudents } from '../../../shared/api/get-students';
 import UpdateStudent from './update-student';
 import DeleteStudent from './delete-student';
 

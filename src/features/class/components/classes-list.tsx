@@ -1,7 +1,9 @@
 import { ClassInfo } from '@app/shared/types/api.type';
-import { useClasses } from '@app/features/class/api/get-classes';
-import { Table, TableColumnsType } from 'antd';
+import { useClasses } from '@app/shared/api/get-classes';
+import { Space, Table, TableColumnsType } from 'antd';
 import { useMemo } from 'react';
+import UpdateClass from '@app/features/class/components/update-class';
+import DeleteClass from '@app/features/class/components/delete-class';
 
 const ClassesList = () => {
   const classesQuery = useClasses();
@@ -9,54 +11,51 @@ const ClassesList = () => {
   const columns: TableColumnsType<ClassInfo> = useMemo(() => {
     return [
       {
-        key: 'classCode',
+        key: 'aclass',
         title: 'Mã lớp',
-        dataIndex: 'classCode',
-        width: 120
+        dataIndex: 'aclass',
+        width: 120,
+        render: (classInfo) => classInfo.classCode
       },
       {
-        key: 'className',
+        key: 'aclass',
         title: 'Tên lớp',
-        dataIndex: 'className',
-        width: 120
+        dataIndex: 'aclass',
+        width: 120,
+        render: (classInfo) => classInfo.className
       },
       {
-        key: 'classGroup',
+        key: 'aclass',
         title: 'Nhóm lớp',
-        dataIndex: 'classGroup',
-        width: 150
+        dataIndex: 'aclass',
+        width: 150,
+        render: (classInfo) => classInfo.classGroup
       },
       {
-        key: 'classGroup',
-        title: 'Nhóm lớp',
-        dataIndex: 'classGroup',
-        width: 150
-      },
-      {
-        key: 'course',
+        key: 'aclass',
         title: 'Môn học',
-        dataIndex: 'course',
+        dataIndex: 'aclass',
         width: 150,
-        render: (course) => course.name
+        render: (classInfo) => classInfo.course.name
       },
       {
-        key: 'teacher',
+        key: 'aclass',
         title: 'Giảng viên giảng dạy',
-        dataIndex: 'teacher',
+        dataIndex: 'aclass',
         width: 150,
-        render: (teacher) => teacher.name
+        render: (classInfo) => classInfo.teacher.name
+      },
+      {
+        key: 'action',
+        title: 'Hành động',
+        width: 80,
+        render: (_, classInfo) => (
+          <Space>
+            <UpdateClass classInfo={classInfo} />
+            <DeleteClass id={classInfo.id} />
+          </Space>
+        )
       }
-      // {
-      //   key: 'action',
-      //   title: 'Hành động',
-      //   width: 80,
-      //   render: (_, lecturer) => (
-      //     <Space>
-      //       <UpdateLecturer lecturer={lecturer} />
-      //       <DeleteLecturer id={lecturer.id} />
-      //     </Space>
-      //   )
-      // }
     ];
   }, []);
 

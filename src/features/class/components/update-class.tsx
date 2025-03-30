@@ -1,14 +1,20 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { useCourses } from '@app/shared/api/get-courses';
+import { EditOutlined } from '@ant-design/icons';
 import { useNotification } from '@app/contexts/NotificationProvider';
-import { useCreateClass } from '@app/features/class/api/create-class';
+import { useUpdateClass } from '@app/features/class/api/update-class';
+import { useSetFormValues } from '@app/hooks';
+import { useCourses } from '@app/shared/api/get-courses';
+import { useLecturers } from '@app/shared/api/get-lecturers';
+import { useSemsters } from '@app/shared/api/get-semesters';
+import { useStudents } from '@app/shared/api/get-students';
+import { ClassInfo } from '@app/shared/types/api.type';
 import { Button, Flex, Form, Input, Modal, Select, Space } from 'antd';
 import { useState } from 'react';
-import { useSemsters } from '@app/shared/api/get-semesters';
-import { useLecturers } from '@app/shared/api/get-lecturers';
-import { useStudents } from '@app/shared/api/get-students';
 
-const CreateClass = () => {
+type UpdateClassProps = {
+  classInfo: ClassInfo;
+};
+
+const UpdateClass = ({ classInfo }: UpdateClassProps) => {
   const [form] = Form.useForm();
   const { showNotification } = useNotification();
 
@@ -19,40 +25,46 @@ const CreateClass = () => {
   const teachersQuery = useLecturers();
   const studentsQuery = useStudents();
 
-  const createClassMutation = useCreateClass({
+  const updateClassMutation = useUpdateClass({
     mutationConfig: {
       onSuccess: () => {
-        showNotification('success', 'Thêm lớp học thành công');
+        showNotification('success', 'Cập nhật lớp học thành công');
         setOpen(false);
       }
     }
   });
 
-  const handleAddNewClass = async () => {
+  const handleAddUpdateClass = async () => {
     try {
       const formValues = await form.validateFields();
-      createClassMutation.mutate(formValues);
+      updateClassMutation.mutate({ payload: formValues, id: classInfo.id });
     } catch (error) {
       console.error(error);
     }
   };
 
+  useSetFormValues(open, form, {
+    ...classInfo.aclass,
+    teacherId: classInfo.aclass.teacher.id,
+    courseId: classInfo.aclass.course.id,
+    semesterId: classInfo.semester.id,
+    studentIds: classInfo.students.map((student) => student.id)
+  });
+
   return (
     <>
-      <Button type='primary' icon={<PlusOutlined />} size='large' onClick={() => setOpen(true)}>
-        Thêm Lớp Học
-      </Button>
+      <Button icon={<EditOutlined />} type='text' size='large' onClick={() => setOpen(true)} />
 
       <Modal
         centered
         destroyOnClose
         width={700}
-        title='Thêm Mới Lớp Học'
+        title='Cập Nhật Thông Tin Lớp Học'
         cancelText='Hủy'
-        okText='Thêm mới'
+        okText='Cập nhật'
         okButtonProps={{ htmlType: 'button', autoFocus: true }}
         open={open}
-        onOk={handleAddNewClass}
+        onOk={handleAddUpdateClass}
         onCancel={() => setOpen(false)}
         modalRender={(dom) => (
           <Form layout='vertical' form={form} clearOnDestroy size='large'>
@@ -155,4 +167,4 @@ const CreateClass = () => {
   );
 };
 
-export default CreateClass;
+export default UpdateClass;

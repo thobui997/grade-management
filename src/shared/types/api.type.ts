@@ -61,6 +61,13 @@ export interface User {
 
 export interface ClassInfo {
   id: number;
+  semester: Semester;
+  students: Student[];
+  aclass: Aclass;
+}
+
+export interface Aclass {
+  id: number;
   course: Course;
   classGroup: string;
   className: string;
@@ -69,10 +76,30 @@ export interface ClassInfo {
 }
 
 export interface ClassCreatedRequest {
-  courseId: number
-  classGroup: string
-  className: string
-  teacherId: number
-  semesterId: number
+  courseId: number;
+  classGroup: string;
+  className: string;
+  teacherId: number;
+  semesterId: number;
 }
 
+export interface ScoreCreatedRequest {
+  classId: number;
+  studentId: number;
+  attendanceScore: number;
+  testScore: number;
+  practiceScore: number;
+  projectScore: number;
+  finalScore: number;
+}
+
+export interface Score {
+  id: number;
+  student: Student;
+  attendanceScore: number;
+  testScore: number;
+  practiceScore: number;
+  projectScore: number;
+  finalScore: number;
+  aclass: ClassInfo;
+}

@@ -31,6 +31,10 @@ export const paths = {
     classes: {
       path: '/quan-ly-lop-hoc',
       getHref: () => '/quan-ly-lop-hoc'
+    },
+    scores: {
+      path: '/quan-ly-diem',
+      getHref: () => '/quan-ly-diem'
     }
   }
 } as const;
