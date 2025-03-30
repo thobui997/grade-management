@@ -1,6 +1,6 @@
 import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
 import { ContentLayout } from '@app/shared/components/layouts';
-import { PageTitle } from '@app/shared/components/ui/page-title';
+import { PageTitle } from '@app/shared/components/page-title';
 import ClassesList from '@app/features/class/components/classes-list';
 import CreateClass from '@app/features/class/components/create-class';
 import { Button, Flex, Input, Space } from 'antd';

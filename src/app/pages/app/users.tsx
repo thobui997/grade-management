@@ -1,6 +1,6 @@
 import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
 import { ContentLayout } from '@app/shared/components/layouts';
-import { PageTitle } from '@app/shared/components/ui/page-title';
+import { PageTitle } from '@app/shared/components/page-title';
 import UsersList from '@app/features/users/components/users-list';
 import { Button, Flex, Input, Space } from 'antd';
 

@@ -1,6 +1,6 @@
 import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
 import { ContentLayout } from '@app/shared/components/layouts';
-import { PageTitle } from '@app/shared/components/ui/page-title';
+import { PageTitle } from '@app/shared/components/page-title';
 import CreateSemester from '@app/features/semester-management/components/create-semester';
 import SemstersList from '@app/features/semester-management/components/semesters-list';
 import { Button, Flex, Input, Space } from 'antd';
