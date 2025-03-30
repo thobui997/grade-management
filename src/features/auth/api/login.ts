@@ -1,4 +1,4 @@
-import { AuthInfo, BaseResponse } from '@app/core/types/api.type';
+import { AuthInfo, BaseResponse } from '@app/shared/types/api.type';
 import { httpClient } from '@app/lib/http-client';
 
 export const login = (email: string, password: string): Promise<BaseResponse<AuthInfo>> => {

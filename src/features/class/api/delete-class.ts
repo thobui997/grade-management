@@ -1,17 +1,17 @@
+import { getClassesQueryOptions } from '@app/features/class/api/get-classes';
 import { httpClient } from '@app/lib/http-client';
 import { MutationConfig } from '@app/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getSemestersQueryOptions } from '../../../shared/api/get-semesters';
 
-export const deleteSemester = (id: number) => {
-  return httpClient.delete(`semesters/${id}`);
+export const deleteClass = (id: number) => {
+  return httpClient.delete(`classes/${id}`);
 };
 
-type UseDeleteSemesterOptions = {
-  mutationConfig?: MutationConfig<typeof deleteSemester>;
+type UseDeleteClassOptions = {
+  mutationConfig?: MutationConfig<typeof deleteClass>;
 };
 
-export const useDeleteSemester = ({ mutationConfig }: UseDeleteSemesterOptions = {}) => {
+export const useDeleteClass = ({ mutationConfig }: UseDeleteClassOptions = {}) => {
   const queryClient = useQueryClient();
 
   const { onSuccess, ...restConfig } = mutationConfig || {};
@@ -19,11 +19,11 @@ export const useDeleteSemester = ({ mutationConfig }: UseDeleteSemesterOptions =
   return useMutation({
     onSuccess: (...args) => {
       queryClient.invalidateQueries({
-        queryKey: getSemestersQueryOptions().queryKey
+        queryKey: getClassesQueryOptions().queryKey
       });
       onSuccess?.(...args);
     },
     ...restConfig,
-    mutationFn: deleteSemester
+    mutationFn: deleteClass
   });
 };

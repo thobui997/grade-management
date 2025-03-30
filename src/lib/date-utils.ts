@@ -1,11 +1,11 @@
-import * as dayjs from 'dayjs';
-import * as localeData from 'dayjs/plugin/localeData';
-import * as isBetween from 'dayjs/plugin/isBetween';
-import * as utc from 'dayjs/plugin/utc';
-import * as customParseFormat from 'dayjs/plugin/customParseFormat';
-import * as isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-import * as isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
-import * as isoWeek from 'dayjs/plugin/isoWeek';
+import dayjs from 'dayjs';
+import localeData from 'dayjs/plugin/localeData';
+import isBetween from 'dayjs/plugin/isBetween';
+import utc from 'dayjs/plugin/utc';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isoWeek from 'dayjs/plugin/isoWeek';
 
 dayjs.extend(utc);
 dayjs.extend(localeData);
@@ -23,7 +23,8 @@ const dateUtils = {
   isSameOrAfter: (date: string, compareDate: string) => dayjs(date).isSameOrAfter(compareDate),
   toUTC: (date?: string) => (date ? dayjs(date).utc() : dayjs().utc()),
   startOfISOWeek: (date: string) => dayjs(date).startOf('isoWeek'),
-  endOfISOWeek: (date: string) => dayjs(date).endOf('isoWeek')
+  endOfISOWeek: (date: string) => dayjs(date).endOf('isoWeek'),
+  format: (date: string, formatType: string) => dayjs(date).format(formatType)
 };
 
 export default dateUtils;

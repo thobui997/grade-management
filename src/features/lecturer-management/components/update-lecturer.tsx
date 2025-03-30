@@ -1,7 +1,7 @@
 import { EditOutlined } from '@ant-design/icons';
 import { useNotification } from '@app/contexts/NotificationProvider';
-import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from '@app/core/conts/pattern.const';
-import { Lecturer } from '@app/core/types/api.type';
+import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from '@app/shared/conts/pattern.const';
+import { Lecturer } from '@app/shared/types/api.type';
 import { Button, Form, Input, Modal } from 'antd';
 import { useState } from 'react';
 import { useUpdateLecturer } from '../api/update-lecturer';

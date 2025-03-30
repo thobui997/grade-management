@@ -1,6 +1,6 @@
 import { EditOutlined } from '@ant-design/icons';
 import { useNotification } from '@app/contexts/NotificationProvider';
-import { Semester } from '@app/core/types/api.type';
+import { Semester } from '@app/shared/types/api.type';
 import { useSetFormValues } from '@app/hooks';
 import { Button, Flex, Form, Input, InputNumber, Modal, Select } from 'antd';
 import { useState } from 'react';

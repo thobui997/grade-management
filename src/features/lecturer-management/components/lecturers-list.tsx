@@ -1,7 +1,7 @@
-import { Lecturer } from '@app/core/types/api.type';
+import { Lecturer } from '@app/shared/types/api.type';
 import { Space, Table, TableColumnsType } from 'antd';
 import { useMemo } from 'react';
-import { useLecturers } from '../api/get-lecturers';
+import { useLecturers } from '../../../shared/api/get-lecturers';
 import UpdateLecturer from './update-lecturer';
 import DeleteLecturer from './delete-lecturer';
 

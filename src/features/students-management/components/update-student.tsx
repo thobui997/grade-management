@@ -1,7 +1,7 @@
 import { EditOutlined } from '@ant-design/icons';
 import { useNotification } from '@app/contexts/NotificationProvider';
-import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from '@app/core/conts/pattern.const';
-import { Student } from '@app/core/types/api.type';
+import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from '@app/shared/conts/pattern.const';
+import { Student } from '@app/shared/types/api.type';
 import { useSetFormValues } from '@app/hooks';
 import { Button, Flex, Form, Input, Modal } from 'antd';
 import { useState } from 'react';

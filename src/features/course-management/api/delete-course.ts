@@ -1,10 +1,10 @@
 import { httpClient } from '@app/lib/http-client';
 import { MutationConfig } from '@app/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getCoursesQueryOptions } from './get-courses';
+import { getCoursesQueryOptions } from '../../../shared/api/get-courses';
 
 export const deleteCourse = (id: number) => {
-  return httpClient.delete(`courses/${id}`).then((res) => res.data);
+  return httpClient.delete(`courses/${id}`);
 };
 
 type UseDeleteCourseOptions = {

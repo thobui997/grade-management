@@ -1,8 +1,8 @@
-import { BaseResponse, Course } from '@app/core/types/api.type';
+import { BaseResponse, Course } from '@app/shared/types/api.type';
 import { httpClient } from '@app/lib/http-client';
 import { MutationConfig } from '@app/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getCoursesQueryOptions } from './get-courses';
+import { getCoursesQueryOptions } from '../../../shared/api/get-courses';
 
 export type CourseUpdatedRequest = Omit<Course, 'id'>;
 

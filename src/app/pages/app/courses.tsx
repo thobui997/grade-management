@@ -1,6 +1,6 @@
 import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
-import { ContentLayout } from '@app/components/layouts';
-import { PageTitle } from '@app/components/ui/page-title';
+import { ContentLayout } from '@app/shared/components/layouts';
+import { PageTitle } from '@app/shared/components/ui/page-title';
 import CourseList from '@app/features/course-management/components/courses-list';
 import CreateCourse from '@app/features/course-management/components/create-course';
 import { Button, Flex, Input, Space } from 'antd';

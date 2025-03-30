@@ -1,5 +1,5 @@
 import { useNotification } from '@app/contexts/NotificationProvider';
-import { AuthInfo } from '@app/core/types/api.type';
+import { AuthInfo } from '@app/shared/types/api.type';
 import { login } from '@app/features/auth/api/login';
 import { useLocalStorage } from '@app/hooks';
 import React, { useContext, useState } from 'react';

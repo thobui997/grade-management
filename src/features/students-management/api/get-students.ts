@@ -1,4 +1,4 @@
-import { Student } from '@app/core/types/api.type';
+import { Student } from '@app/shared/types/api.type';
 import { httpClient } from '@app/lib/http-client';
 import { QueryConfig } from '@app/lib/react-query';
 import { queryOptions, useQuery } from '@tanstack/react-query';

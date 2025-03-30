@@ -1,8 +1,8 @@
-import { SemesterStatusMap } from '@app/core/enums/semester-status.enum';
-import { Semester } from '@app/core/types/api.type';
+import { SemesterStatusMap } from '@app/shared/enums/semester-status.enum';
+import { Semester } from '@app/shared/types/api.type';
 import { Table, TableColumnsType, Tag } from 'antd';
 import { useMemo } from 'react';
-import { useSemsters } from '../api/get-semesters';
+import { useSemsters } from '../../../shared/api/get-semesters';
 import UpdateSemester from './update-semester';
 
 const SemstersList = () => {

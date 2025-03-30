@@ -1,4 +1,4 @@
-import MainErrorFallback from '@app/components/error/main';
+import MainErrorFallback from '@app/shared/components/error/main';
 import { theme } from '@app/config/theme';
 import AuthProvider from '@app/contexts/AuthProvider';
 import NotificationProvider from '@app/contexts/NotificationProvider';

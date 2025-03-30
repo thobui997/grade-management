@@ -1,4 +1,4 @@
-import { Student } from '@app/core/types/api.type';
+import { Student } from '@app/shared/types/api.type';
 import { Space, Table, TableColumnsType } from 'antd';
 import { useMemo } from 'react';
 import { useStudents } from '../api/get-students';

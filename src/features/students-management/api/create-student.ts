@@ -1,4 +1,4 @@
-import { BaseResponse, Student } from '@app/core/types/api.type';
+import { BaseResponse, Student } from '@app/shared/types/api.type';
 import { httpClient } from '@app/lib/http-client';
 import { MutationConfig } from '@app/lib/react-query';
 import { getStudentsQueryOptions } from './get-students';

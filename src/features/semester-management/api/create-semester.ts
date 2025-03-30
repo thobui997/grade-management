@@ -1,12 +1,12 @@
-import { BaseResponse, Course, Semester } from '@app/core/types/api.type';
+import { BaseResponse, Course, Semester } from '@app/shared/types/api.type';
 import { httpClient } from '@app/lib/http-client';
 import { MutationConfig } from '@app/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getSemestersQueryOptions } from './get-semesters';
+import { getSemestersQueryOptions } from '../../../shared/api/get-semesters';
 
 export type SemesterCreatedRequest = Omit<Semester, 'id'>;
 
-export const createSemester = (payload: { data: SemesterCreatedRequest }): Promise<BaseResponse<Course>> => {
+export const createSemester = (payload: SemesterCreatedRequest): Promise<BaseResponse<Course>> => {
   return httpClient.post('semesters/create', payload);
 };
 

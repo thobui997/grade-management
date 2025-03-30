@@ -23,6 +23,14 @@ export const paths = {
     semesters: {
       path: '/quan-ly-hoc-ky',
       getHref: () => '/quan-ly-hoc-ky'
+    },
+    users: {
+      path: '/quan-ly-nguoi-dung',
+      getHref: () => '/quan-ly-nguoi-dung'
+    },
+    classes: {
+      path: '/quan-ly-lop-hoc',
+      getHref: () => '/quan-ly-lop-hoc'
     }
   }
 } as const;

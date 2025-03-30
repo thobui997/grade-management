@@ -50,3 +50,29 @@ export interface Lecturer {
   email: string;
   phone: string;
 }
+
+export interface User {
+  userId: number;
+  role: string;
+  fullName: string;
+  email: string;
+  dateOfBirth: string;
+}
+
+export interface ClassInfo {
+  id: number;
+  course: Course;
+  classGroup: string;
+  className: string;
+  classCode: string;
+  teacher: Lecturer;
+}
+
+export interface ClassCreatedRequest {
+  courseId: number
+  classGroup: string
+  className: string
+  teacherId: number
+  semesterId: number
+}
+

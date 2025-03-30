@@ -1,6 +1,6 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { useNotification } from '@app/contexts/NotificationProvider';
-import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from '@app/core/conts/pattern.const';
+import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from '@app/shared/conts/pattern.const';
 import { Button, Form, Input, Modal } from 'antd';
 import { useState } from 'react';
 import { useCreateLecturer } from '../api/create-lecturer';

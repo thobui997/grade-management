@@ -1,4 +1,4 @@
-import ConfirmDeleteDialog from '@app/components/ui/dialog/confirm-delete-dialog';
+import ConfirmDeleteDialog from '@app/shared/components/ui/dialog/confirm-delete-dialog';
 import { useNotification } from '@app/contexts/NotificationProvider';
 import { useDeleteLecturer } from '../api/delete-lecturer';
 

@@ -2,7 +2,6 @@ import {
   BookOutlined,
   ContactsOutlined,
   ContainerOutlined,
-  UsergroupAddOutlined,
   UserOutlined
 } from '@ant-design/icons';
 import { paths } from '@app/config/paths';
@@ -49,6 +48,16 @@ const items: MenuProps['items'] = [
     key: paths.app.lecturers.path,
     icon: React.createElement(ContactsOutlined),
     label: <NavLink to={paths.app.lecturers.path}>Quản lý giảng viên</NavLink>
+  },
+  {
+    key: paths.app.users.path,
+    icon: React.createElement(ContactsOutlined),
+    label: <NavLink to={paths.app.users.path}>Quản lý người dùng</NavLink>
+  },
+  {
+    key: paths.app.classes.path,
+    icon: React.createElement(ContactsOutlined),
+    label: <NavLink to={paths.app.classes.path}>Quản lý lớp học</NavLink>
   }
 ];
 
