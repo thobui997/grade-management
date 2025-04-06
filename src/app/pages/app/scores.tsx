@@ -4,19 +4,33 @@ import ScoresList from '@app/features/scores/components/scores-list';
 import { useClasses } from '@app/shared/api/get-classes';
 import { ContentLayout } from '@app/shared/components/layouts';
 import { PageTitle } from '@app/shared/components/page-title';
-import { Flex, Select, Space } from 'antd';
-import { useState } from 'react';
+import { Flex, Input, Select, Space } from 'antd';
+import { useMemo, useState } from 'react';
+import { SearchOutlined } from '@ant-design/icons';
 
 const ScoresRoute = () => {
   const classesQuery = useClasses();
 
   const [classId, setClassId] = useState<number | null>(classesQuery.data?.[0].id || null);
+  const [searchedValue, setSearchedValue] = useState('');
 
   const scoresQuery = useScores({ classId });
 
   const handleClassChange = (value: number) => {
     setClassId(value);
   };
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchedValue(e.target.value);
+  };
+
+  const scores = useMemo(() => {
+    if (!searchedValue) return scoresQuery.data;
+    return scoresQuery.data?.filter((score) => {
+      const student = score.student;
+      return student.studentCode.toLowerCase().includes(searchedValue.toLowerCase());
+    });
+  }, [scoresQuery.data, searchedValue]);
 
   return (
     <>
@@ -40,9 +54,17 @@ const ScoresRoute = () => {
               </Select.Option>
             ))}
           </Select>
+
+          <Input
+            addonBefore={<SearchOutlined />}
+            placeholder='Tìm kiếm theo mã sinh viên'
+            style={{ width: 300 }}
+            size='large'
+            onChange={handleSearch}
+          />
         </Space>
 
-        <ScoresList scores={scoresQuery.data ?? []} />
+        <ScoresList scores={scores ?? []} />
       </ContentLayout>
     </>
   );
