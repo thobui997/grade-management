@@ -4,7 +4,7 @@ import { MutationConfig } from '@app/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const deleteUser = (id: number) => {
-  return httpClient.delete(`admin/users/${id}`);
+  return httpClient.delete(`admin/${id}`);
 };
 
 type UseDeleteUserOptions = {

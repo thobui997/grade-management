@@ -1,8 +1,9 @@
 import { useUsers } from '@app/features/users/api/get-users';
+import DeleteUser from '@app/features/users/components/delete-user';
 import { UserType } from '@app/shared/enums/user-type.enum';
 import { User } from '@app/shared/types/api.type';
 import { formatDate } from '@app/shared/utils';
-import { Table, TableColumnsType, Tag } from 'antd';
+import { Space, Table, TableColumnsType, Tag } from 'antd';
 import { useMemo } from 'react';
 
 type UserListProps = {
@@ -63,6 +64,16 @@ const UsersList = ({ searchedValue, role }: UserListProps) => {
           <Tag color={role === UserType.ADMIN ? 'success' : role === UserType.TEACHER ? 'geekblue' : 'gold'}>
             {role}
           </Tag>
+        )
+      },
+      {
+        key: 'action',
+        title: 'Hành động',
+        width: 80,
+        render: (_, user) => (
+          <Space>
+            <DeleteUser id={user.userId} />
+          </Space>
         )
       }
     ];
