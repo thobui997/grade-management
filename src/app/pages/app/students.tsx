@@ -1,9 +1,9 @@
-import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
-import { ContentLayout } from '@app/shared/components/layouts';
-import { PageTitle } from '@app/shared/components/page-title';
+import { SearchOutlined } from '@ant-design/icons';
 import CreateStudent from '@app/features/students-management/components/create-student';
 import StudentsList from '@app/features/students-management/components/students-list';
-import { Button, Flex, Input, Space } from 'antd';
+import { ContentLayout } from '@app/shared/components/layouts';
+import { PageTitle } from '@app/shared/components/page-title';
+import { Flex, Input, Space } from 'antd';
 import { useState } from 'react';
 
 const StudentsRoute = () => {
