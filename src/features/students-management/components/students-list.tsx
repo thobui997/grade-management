@@ -5,8 +5,22 @@ import { useStudents } from '../../../shared/api/get-students';
 import UpdateStudent from './update-student';
 import DeleteStudent from './delete-student';
 
-const StudentsList = () => {
+type StudentsListProps = {
+  searchedValue: string;
+};
+
+const StudentsList = ({ searchedValue }: StudentsListProps) => {
   const studentsQuery = useStudents();
+  const students = useMemo(() => {
+    if (!searchedValue) {
+      return studentsQuery.data ?? [];
+    }
+    return (
+      studentsQuery.data?.filter((student) =>
+        student.studentCode.toLowerCase().includes(searchedValue.toLowerCase())
+      ) ?? []
+    );
+  }, [studentsQuery.data, searchedValue]);
 
   const columns: TableColumnsType<Student> = useMemo(() => {
     return [
@@ -54,7 +68,7 @@ const StudentsList = () => {
       tableLayout='fixed'
       size='large'
       columns={columns}
-      dataSource={studentsQuery.data ?? []}
+      dataSource={students}
       loading={studentsQuery.isLoading}
       pagination={false}
       rowKey={(record) => record.id}
