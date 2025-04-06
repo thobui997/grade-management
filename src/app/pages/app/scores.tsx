@@ -11,7 +11,7 @@ import { SearchOutlined } from '@ant-design/icons';
 const ScoresRoute = () => {
   const classesQuery = useClasses();
 
-  const [classId, setClassId] = useState<number | null>(classesQuery.data?.[0].id || null);
+  const [classId, setClassId] = useState<number | null>(classesQuery.data?.[0]?.id || null);
   const [searchedValue, setSearchedValue] = useState('');
 
   const scoresQuery = useScores({ classId });
@@ -46,7 +46,7 @@ const ScoresRoute = () => {
             onChange={handleClassChange}
             size='large'
             style={{ width: 260 }}
-            defaultValue={classesQuery.data?.[0].id}
+            defaultValue={classesQuery.data?.[0]?.id}
           >
             {classesQuery.data?.map((classInfo) => (
               <Select.Option value={classInfo.id} key={classInfo.id}>
