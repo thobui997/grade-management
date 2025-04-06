@@ -1,10 +1,19 @@
-import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
+import UserFilter from '@app/features/users/components/user-filter';
+import UsersList from '@app/features/users/components/users-list';
 import { ContentLayout } from '@app/shared/components/layouts';
 import { PageTitle } from '@app/shared/components/page-title';
-import UsersList from '@app/features/users/components/users-list';
-import { Button, Flex, Input, Space } from 'antd';
+import { Flex, Input, Space } from 'antd';
+import { useState } from 'react';
 
 const UsersRoute = () => {
+  const [searchedValue, setSearchedValue] = useState('');
+  const [role, setRole] = useState<string | undefined>(undefined);
+
+  const handleSearchUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchedValue(e.target.value);
+  };
+
   return (
     <>
       <Flex justify='space-between' align='center'>
@@ -13,14 +22,18 @@ const UsersRoute = () => {
 
       <ContentLayout>
         <Space style={{ marginBottom: 16 }} size={16}>
-          <Input addonBefore={<SearchOutlined />} placeholder='Tìm kiếm' style={{ width: 300 }} size='large' />
+          <Input
+            addonBefore={<SearchOutlined />}
+            placeholder='Tìm kiếm'
+            style={{ width: 300 }}
+            size='large'
+            onChange={handleSearchUser}
+          />
 
-          <Button icon={<FilterOutlined />} size='large'>
-            Lọc
-          </Button>
+          <UserFilter setRole={setRole} />
         </Space>
 
-        <UsersList />
+        <UsersList searchedValue={searchedValue} role={role} />
       </ContentLayout>
     </>
   );
