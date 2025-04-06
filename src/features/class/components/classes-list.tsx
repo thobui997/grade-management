@@ -1,12 +1,27 @@
-import { ClassInfo } from '@app/shared/types/api.type';
+import DeleteClass from '@app/features/class/components/delete-class';
+import UpdateClass from '@app/features/class/components/update-class';
 import { useClasses } from '@app/shared/api/get-classes';
+import { ClassInfo } from '@app/shared/types/api.type';
 import { Space, Table, TableColumnsType } from 'antd';
 import { useMemo } from 'react';
-import UpdateClass from '@app/features/class/components/update-class';
-import DeleteClass from '@app/features/class/components/delete-class';
 
-const ClassesList = () => {
+type ClassesListProps = {
+  searchedValue: string;
+};
+
+const ClassesList = ({ searchedValue }: ClassesListProps) => {
   const classesQuery = useClasses();
+
+  const classes = useMemo(() => {
+    if (!searchedValue) {
+      return classesQuery.data ?? [];
+    }
+    return (
+      classesQuery.data?.filter((classInfo) =>
+        classInfo.aclass.className.toLowerCase().includes(searchedValue.toLowerCase())
+      ) ?? []
+    );
+  }, [classesQuery.data, searchedValue]);
 
   const columns: TableColumnsType<ClassInfo> = useMemo(() => {
     return [
@@ -64,7 +79,7 @@ const ClassesList = () => {
       tableLayout='fixed'
       size='large'
       columns={columns}
-      dataSource={classesQuery.data ?? []}
+      dataSource={classes}
       loading={classesQuery.isLoading}
       pagination={false}
       rowKey={(record) => record.id}
