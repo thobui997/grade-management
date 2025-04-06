@@ -5,8 +5,40 @@ import { useMemo } from 'react';
 import { useSemsters } from '../../../shared/api/get-semesters';
 import UpdateSemester from './update-semester';
 
-const SemstersList = () => {
+type SemesterListProps = {
+  searchedValue: string;
+  term: string | undefined;
+};
+
+const SemstersList = ({ searchedValue, term }: SemesterListProps) => {
   const semestersQuery = useSemsters();
+  const semesters = useMemo(() => {
+
+    if (!searchedValue && !term) {
+      return semestersQuery.data ?? [];
+    }
+
+    if (searchedValue && !term) {
+      return (
+        semestersQuery.data?.filter((semester) => semester.name.toLowerCase().includes(searchedValue.toLowerCase())) ??
+        []
+      );
+    }
+
+    if (!searchedValue && term) {
+      return semestersQuery.data?.filter((semester) => semester.term === +term) ?? [];
+    }
+
+    if (searchedValue && term) {
+      return (
+        semestersQuery.data
+          ?.filter((semester) => semester.name.toLowerCase().includes(searchedValue.toLowerCase()))
+          .filter((semester) => semester.term === +term) ?? []
+      );
+    }
+
+    return semestersQuery.data ?? [];
+  }, [semestersQuery.data, searchedValue, term]);
 
   const columns: TableColumnsType<Semester> = useMemo(() => {
     return [
@@ -52,7 +84,7 @@ const SemstersList = () => {
       tableLayout='fixed'
       size='large'
       columns={columns}
-      dataSource={semestersQuery.data ?? []}
+      dataSource={semesters}
       loading={semestersQuery.isLoading}
       pagination={false}
       rowKey={(record) => record.id}
