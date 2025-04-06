@@ -5,8 +5,19 @@ import DeleteCourse from './delete-course';
 import UpdateCourse from './update-course';
 import { useCourses } from '@app/shared/api/get-courses';
 
-const CourseList = () => {
+type CourseListProps = {
+  searchedValue: string;
+};
+
+const CourseList = ({ searchedValue }: CourseListProps) => {
   const coursesQuery = useCourses();
+
+  const courses = useMemo(() => {
+    if (!searchedValue) {
+      return coursesQuery.data ?? [];
+    }
+    return coursesQuery.data?.filter((course) => course.name.toLowerCase().includes(searchedValue.toLowerCase())) ?? [];
+  }, [coursesQuery.data, searchedValue]);
 
   const columns: TableColumnsType<Course> = useMemo(() => {
     return [
@@ -76,7 +87,7 @@ const CourseList = () => {
       tableLayout='fixed'
       size='large'
       columns={columns}
-      dataSource={coursesQuery.data ?? []}
+      dataSource={courses}
       loading={coursesQuery.isLoading}
       pagination={false}
       rowKey={(record) => record.id}
