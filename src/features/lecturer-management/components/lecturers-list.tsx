@@ -5,8 +5,21 @@ import { useLecturers } from '../../../shared/api/get-lecturers';
 import UpdateLecturer from './update-lecturer';
 import DeleteLecturer from './delete-lecturer';
 
-const LecturersList = () => {
+type LecturersListProps = {
+  searchedValue: string;
+};
+
+const LecturersList = ({ searchedValue }: LecturersListProps) => {
   const lecturersQuery = useLecturers();
+
+  const lecturers = useMemo(() => {
+    if (!searchedValue) {
+      return lecturersQuery.data ?? [];
+    }
+    return (
+      lecturersQuery.data?.filter((lecturer) => lecturer.name.toLowerCase().includes(searchedValue.toLowerCase())) ?? []
+    );
+  }, [lecturersQuery.data, searchedValue]);
 
   const columns: TableColumnsType<Lecturer> = useMemo(() => {
     return [
@@ -54,7 +67,7 @@ const LecturersList = () => {
       tableLayout='fixed'
       size='large'
       columns={columns}
-      dataSource={lecturersQuery.data ?? []}
+      dataSource={lecturers}
       loading={lecturersQuery.isLoading}
       pagination={false}
       rowKey={(record) => record.id}
